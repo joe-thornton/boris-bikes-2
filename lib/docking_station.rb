@@ -9,6 +9,7 @@ class DockingStation
   end
 
   def dock(bike)
+    raise 'Dock full error' if @rack != nil
     @rack = bike
   end
 end
