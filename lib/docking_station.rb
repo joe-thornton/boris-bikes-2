@@ -8,12 +8,22 @@ class DockingStation
   end
 
   def release_bike
-    raise 'Dock empty error' if @rack.empty?
+    raise 'Dock empty error' if empty?
     @rack.pop
   end
 
   def dock(bike)
-    raise 'Dock full error' if @rack.count >= 20
+    raise 'Dock full error' if full?
     @rack << bike
+  end
+
+  private
+
+  def full?
+    @rack.count >= 20
+  end
+
+  def empty?
+    @rack.empty?
   end
 end
