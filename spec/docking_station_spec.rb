@@ -13,11 +13,13 @@ describe DockingStation do
 
     it 'should dock a bike' do
         bike = Bike.new
-        expect(subject.dock(bike)).to be true
+        expect(subject.dock(bike)).to eq bike
     end
 
-    it 'should have an empty array of bikes when we create a new docking station' do
-        expect(@rack).to be_nil
-    end
+    # it 'should have an empty array of bikes when we create a new docking station' do
+    #     expect(@rack).to be_nil
+    # end
+
+
 
 end
