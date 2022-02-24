@@ -6,9 +6,11 @@ describe DockingStation do
     end
 
     it 'should release a working bike' do
-        bike = subject.release_bike
+        bike = Bike.new
+        subject.dock(bike)
         expect(bike).to be_instance_of(Bike)
         expect(bike.working?).to(eq(true))
+        expect(subject.release_bike).to eq bike
     end
 
     it 'should dock a bike' do
@@ -16,10 +18,9 @@ describe DockingStation do
         expect(subject.dock(bike)).to eq bike
     end
 
-    # it 'should have an empty array of bikes when we create a new docking station' do
-    #     expect(@rack).to be_nil
-    # end
-
-
+    it 'should raise an error when releasing a bike from an empty dock' do
+        dock = DockingStation.new
+        expect { dock.release_bike }.to raise_error('Dock empty error')
+    end
 
 end

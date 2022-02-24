@@ -3,12 +3,9 @@
 class DockingStation
   attr_reader :rack
 
-  def initialize
-    @rack = Bike.new
-  end
-
   def release_bike
-    bike = Bike.new
+    raise 'Dock empty error' if @rack == nil
+    @rack
   end
 
   def dock(bike)
