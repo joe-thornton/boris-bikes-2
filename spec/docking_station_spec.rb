@@ -18,14 +18,14 @@ describe DockingStation do
     end
 
     it 'should raise an error when releasing a bike from an empty dock' do
-        dock = DockingStation.new
-        expect { dock.release_bike }.to raise_error('Dock empty error')
+        station = DockingStation.new
+        expect { station.release_bike }.to raise_error('Dock empty error')
     end
 
     it 'should raise an error when trying to dock a bike where the docking station is full' do
-        dock = DockingStation.new
-        dock.capacity.times { dock.dock(Bike.new) }
-        expect { dock.dock(Bike.new) }.to raise_error('Dock full error')
+        station = DockingStation.new
+        station.capacity.times { station.dock(Bike.new) }
+        expect { station.dock(Bike.new) }.to raise_error('Dock full error')
     end
 
     it 'should allow the system maintainer to set the capacity of docking stations' do
@@ -37,8 +37,17 @@ describe DockingStation do
     end
 
     it 'should have a variable capacity' do
-        dock = DockingStation.new(50)
-        50.times { dock.dock(Bike.new) }
-        expect{ dock.dock(Bike.new) }.to raise_error 'Dock full error'
+        station = DockingStation.new(50)
+        50.times { station.dock(Bike.new) }
+        expect{ station.dock(Bike.new) }.to raise_error 'Dock full error'
     end
+
+    # it 'should not release broken bikes' do
+    #     station = DockingStation.new
+    #     bike = Bike.new
+    #     bike.report_broken
+    #     station.dock(bike)
+    #     expect(station.release_bike).to eq nil
+    # end
+
 end
