@@ -12,7 +12,8 @@ class DockingStation
 
   def release_bike
     raise 'Dock empty error' if empty?
-    @rack.pop
+    return @rack.pop unless @rack.last.broken? == true
+    return nil
   end
 
   def dock(bike)

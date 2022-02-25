@@ -42,12 +42,12 @@ describe DockingStation do
         expect{ station.dock(Bike.new) }.to raise_error 'Dock full error'
     end
 
-    # it 'should not release broken bikes' do
-    #     station = DockingStation.new
-    #     bike = Bike.new
-    #     bike.report_broken
-    #     station.dock(bike)
-    #     expect(station.release_bike).to eq nil
-    # end
+    it 'should not release broken bikes' do
+        station = DockingStation.new
+        bike = Bike.new
+        bike.report_broken
+        station.dock(bike)
+        expect(station.release_bike).to eq nil
+    end
 
 end
