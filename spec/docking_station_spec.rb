@@ -8,14 +8,12 @@ describe DockingStation do
     end
 
     it 'should release a working bike' do
-        allow(bike).to receive(:working?).and_return(true)
-        allow(bike).to receive(:broken?).and_return(false)
-        subject.dock(bike)
+        a_bike = double("a_bike", :working? => true, :broken? => false)
+        subject.dock(a_bike)
         expect(subject.release_bike.working?).to eq true
     end
 
     it 'should dock a bike' do
-
         expect(subject.dock(bike)).to eq [bike]
     end
 
@@ -46,10 +44,9 @@ describe DockingStation do
 
     it 'should not release broken bikes' do
         station = DockingStation.new
-        allow(bike).to receive(:report_broken).and_return(true)
-        allow(bike).to receive(:broken?).and_return(true)
-        bike.report_broken
-        station.dock(bike)
+        a_bike = double("a_bike", :report_broken => true, :broken? => true)
+        a_bike.report_broken
+        station.dock(a_bike)
         expect(station.release_bike).to eq nil
     end
 
